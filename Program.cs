@@ -2,6 +2,12 @@
 List<string> aufgaben = new();
 int hinzufügen_frage = 0;
 int auswahl = 0;
+int nummer = 1;
+int del_choice = 0;
+int del_confirm = 0;
+
+
+
 
 
 
@@ -35,8 +41,10 @@ switch (auswahl)    //switch (weiche), "alternative" zu if, in dem Fall besser +
             hinzufügen_frage = Convert.ToInt32(Console.ReadLine());
             if(hinzufügen_frage == 1)
             {
+               
                 aufgaben.Add(neueAufgabe);
                 Console.WriteLine(neueAufgabe + " wurde den Aufgaben hinzugefügt.");
+                 
             }
             else
             {
@@ -55,9 +63,12 @@ switch (auswahl)    //switch (weiche), "alternative" zu if, in dem Fall besser +
         }
         else
         {
+            nummer =1;
             foreach(string aufgabe in aufgaben)
             {
-                Console.WriteLine("- " + aufgabe);
+                
+                Console.WriteLine($"{nummer}  -  {aufgabe}");
+                nummer++;
             }
             System.Console.WriteLine("press any key to continue: ");
             Console.ReadLine();
@@ -65,7 +76,30 @@ switch (auswahl)    //switch (weiche), "alternative" zu if, in dem Fall besser +
 
         break;
     case 3:
-        Console.WriteLine("Aufgabe löschen");
+        Console.WriteLine("Wähle die Nummer der Aufgabe die du löschen möchtest: ");
+            nummer = 1;
+            foreach(string aufgabe in aufgaben)
+            {
+                
+                Console.WriteLine($"{nummer}  -  {aufgabe}");
+                nummer++;
+                
+            }
+            del_choice = Convert.ToInt32(Console.ReadLine());
+            System.Console.WriteLine("Möchtest du Aufgabe " + del_choice + " wirklich löschen?");
+            Console.WriteLine("[1] Ja [2] Nein");
+            del_confirm = Convert.ToInt32(Console.ReadLine());
+
+        if (del_confirm != 1)
+            {
+                System.Console.WriteLine("Aufgabe " + del_choice + " wurde NICHT gelöscht.");
+            }
+            else
+            {
+                Console.WriteLine("Aufgabe " + del_choice + " wurde gelöscht.");
+            }
+            
+        Console.ReadLine();
 
         break;
     case 4:
@@ -75,6 +109,7 @@ switch (auswahl)    //switch (weiche), "alternative" zu if, in dem Fall besser +
     Console.WriteLine("Gib eine gültige Zahl ein!");
     break;
 }
+
 }
 
 
